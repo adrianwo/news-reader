@@ -1,8 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import { news } from "../features/api/news"
+import layoutReducer from "../features/layout/layoutSlice"
 export const store = configureStore({
   reducer: {
     [news.reducerPath]: news.reducer,
+    layout: layoutReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(news.middleware),
