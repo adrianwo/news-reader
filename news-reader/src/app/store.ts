@@ -1,7 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
-
+import { news } from "../features/api/news"
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    [news.reducerPath]: news.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(news.middleware),
 })
 
 export type AppDispatch = typeof store.dispatch
