@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+
+  web:
+    container_name: news-reader
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './news-reader:/app'
+      - '/app/node_modules'
+    ports:
+      - 5173:5173
+    
