@@ -17,4 +17,5 @@ export interface ListResponse<T> {
 
 export interface LayoutState {
   listView: boolean
+  totalResults: number
 }

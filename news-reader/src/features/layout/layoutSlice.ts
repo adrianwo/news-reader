@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../app/store";
-import { LayoutState } from "../../types/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { RootState } from "../../app/store"
+import { LayoutState } from "../../types/types"
 
 const initialState: LayoutState = {
   listView: true,
-};
+  totalResults: 0,
+}
 
 export const layoutSlice = createSlice({
   name: "layout",
@@ -12,13 +13,18 @@ export const layoutSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     setListView: (state, action: PayloadAction<boolean>) => {
-      state.listView = action.payload;
+      state.listView = action.payload
+    },
+    setTotalResult: (state, action: PayloadAction<number>) => {
+      state.totalResults = action.payload
     },
   },
-});
+})
 
-export const { setListView } = layoutSlice.actions;
+export const { setListView, setTotalResult } = layoutSlice.actions
 
-export const selectListView = (state: RootState) => state.layout.listView;
+export const selectListView = (state: RootState) => state.layout.listView
+export const selectTotalResults = (state: RootState) =>
+  state.layout.totalResults
 
-export default layoutSlice.reducer;
+export default layoutSlice.reducer
