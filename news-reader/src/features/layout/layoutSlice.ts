@@ -3,7 +3,7 @@ import { RootState } from "../../app/store"
 import { LayoutState } from "../../types/types"
 
 const initialState: LayoutState = {
-  listView: true,
+  listView: false,
   totalResults: 0,
 }
 

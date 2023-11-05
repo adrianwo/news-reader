@@ -1,12 +1,26 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useGetNewsQuery } from "../api/news"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import {
+  setTotalResult,
+  selectListView,
+} from "../../features/layout/layoutSlice"
+import TableView from "../../components/TableView"
+import CardView from "../../components/CardView"
 
 const News = () => {
-  const [currentPage, setCurrentPage] = useState<number>(1)
+  const dispatch = useAppDispatch()
+  const [currentPage] = useState<number>(1)
   const { data, isLoading, error } = useGetNewsQuery(currentPage)
+  const isListView = useAppSelector(selectListView)
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setTotalResult(data.totalResults))
+    }
+  }, [data, dispatch])
 
   if (isLoading) {
-    console.log("loading")
     return <p>Loading...</p>
   }
 
@@ -28,11 +42,12 @@ const News = () => {
   }
   if (data) {
     return (
-      <div>
-        <h2>Artykuły</h2>
-        {data.articles.map((article, index) => (
-          <div key={index}>{article.title}</div>
-        ))}
+      <div className="main py-3">
+        {isListView ? (
+          <TableView articles={data.articles} />
+        ) : (
+          <CardView articles={data.articles} />
+        )}
       </div>
     )
   }

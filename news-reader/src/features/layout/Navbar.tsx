@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react"
 import {
-  Button,
   ButtonGroup,
   ToggleButton,
   Container,
@@ -16,7 +14,7 @@ export function Navbar() {
   const dispatch = useAppDispatch()
 
   return (
-    <NavbarBs className="bg-white shadow-sm mb-3">
+    <NavbarBs className="container fixed-top bg-light rounded shadow-sm border mb-3">
       <Container>
         <NavbarBs.Brand href="/">News reader</NavbarBs.Brand>
         <Nav>

@@ -1,5 +1,4 @@
-import React from "react"
-import { render, screen, fireEvent, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { Provider } from "react-redux"
 import { store } from "../../../app/store"
 import { Navbar } from "../Navbar"
@@ -33,8 +32,5 @@ describe("navbar", () => {
     )
 
     expect(screen.getAllByRole("radio")).toHaveLength(2)
-  })
-  it("true to be true", () => {
-    expect(true).toBe(true)
   })
 })
