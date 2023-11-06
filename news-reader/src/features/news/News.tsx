@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { useGetNewsQuery } from "../api/news"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {
   setTotalResult,
   selectListView,
+  selectCurrentPage,
+  setCurrentPage,
 } from "../../features/layout/layoutSlice"
 import TableView from "../../components/TableView"
 import CardView from "../../components/CardView"
 import { useParams } from "react-router-dom"
 import ArticleModal from "../../components/ArticleModal"
+import Paginator from "./Paginator"
 
 const News = () => {
   const dispatch = useAppDispatch()
-  const [currentPage] = useState<number>(1)
+  const currentPage = useAppSelector(selectCurrentPage)
   const { code } = useParams()
   const { data, isLoading, error } = useGetNewsQuery({
     page: currentPage,
@@ -21,9 +24,14 @@ const News = () => {
   const isListView = useAppSelector(selectListView)
 
   useEffect(() => {
+    dispatch(setCurrentPage(1))
+  }, [code, dispatch])
+
+  useEffect(() => {
     if (data) {
       dispatch(setTotalResult(data.totalResults))
     }
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }, [data, dispatch])
 
   if (isLoading) {
@@ -48,12 +56,13 @@ const News = () => {
   }
   if (data) {
     return (
-      <div className="main container flex-shrink-1 py-3 ">
+      <div className="main d-flex flex-column container flex-shrink-1 py-3 ">
         {isListView ? (
           <TableView articles={data.articles} />
         ) : (
           <CardView articles={data.articles} />
         )}
+        <Paginator />
         <ArticleModal />
       </div>
     )

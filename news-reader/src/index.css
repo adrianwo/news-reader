@@ -21,3 +21,8 @@ body {
 .nav-link.active {
   background-color: #c6c7c8;
 }
+
+a.page-link,
+a.page-link:hover {
+  color: #5a5a5a;
+}

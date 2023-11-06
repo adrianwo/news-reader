@@ -26,6 +26,7 @@ export interface IArticleModal {
 export interface LayoutState {
   listView: boolean
   totalResults: number
+  currentPage: number
   articleModal: IArticleModal
 }
 
