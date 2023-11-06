@@ -1,4 +1,6 @@
 import { Card } from "react-bootstrap"
+import { useTranslation } from "react-i18next"
+
 type ArticleCardProps = {
   title: string
   sourceName: string
@@ -16,6 +18,7 @@ export function ArticleCard({
   urlToImage,
   description,
 }: ArticleCardProps) {
+  const { t } = useTranslation()
   return (
     <Card className="h-100 shadow-sm">
       {urlToImage && (
@@ -37,17 +40,17 @@ export function ArticleCard({
             <div className="mb-3">{description}</div>
             <div className="d-flex flex-row justify-content-end">
               <a href={url} target="_blank" rel="noopener noreferrer">
-                <small>Zobacz artykuł</small>
+                <small>{t("read article")}</small>
               </a>
             </div>
           </div>
           <div className="d-flex flex-row  text-body-secondary justify-content-between">
             <small>
-              Źródło:
+              {t("source")}:
               <br /> {sourceName}{" "}
             </small>
             <small>
-              Opublikowano:
+              {t("published")}:
               <br /> {new Date(publishedAt).toLocaleString()}
             </small>
           </div>

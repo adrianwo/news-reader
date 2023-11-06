@@ -1,8 +1,8 @@
 import { Country } from "../types/types"
 
 export const CountryList: Country[] = [
-  { name: "Polska", code: "pl" },
-  { name: "Ukraina", code: "ua" },
-  { name: "Wielka Brytania", code: "gb" },
+  { name: "poland", code: "pl" },
+  { name: "ukraine", code: "ua" },
+  { name: "united kingdom", code: "gb" },
   { name: "USA", code: "us" },
 ]

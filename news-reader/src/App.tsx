@@ -5,6 +5,7 @@ import { Navbar } from "./features/layout/Navbar"
 import Footer from "./features/layout/Footer"
 import { Routes, Route, Navigate } from "react-router-dom"
 import SideBar from "./features/layout/SideBar"
+
 function App() {
   return (
     <Container className="p-0">

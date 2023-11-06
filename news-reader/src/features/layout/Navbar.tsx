@@ -1,5 +1,7 @@
 import {
   ButtonGroup,
+  Dropdown,
+  DropdownButton,
   ToggleButton,
   Container,
   Nav,
@@ -8,10 +10,16 @@ import {
 import { Grid, List } from "react-bootstrap-icons"
 import { useAppSelector, useAppDispatch } from "../../app/hooks"
 import { selectListView, setListView } from "../../features/layout/layoutSlice"
+import Flag from "react-flagkit"
+import { useTranslation } from "react-i18next"
 
 export function Navbar() {
   const isListView = useAppSelector(selectListView)
   const dispatch = useAppDispatch()
+  const { i18n } = useTranslation()
+  const handleLanguage = (lang: string | null) => {
+    if (lang) i18n.changeLanguage(lang)
+  }
 
   return (
     <NavbarBs className="container fixed-top bg-light rounded shadow-sm border mb-3">
@@ -43,6 +51,27 @@ export function Navbar() {
               <Grid className="align-self-center" />
             </ToggleButton>
           </ButtonGroup>
+          <DropdownButton
+            id="lang-select-button"
+            title={
+              i18n.language === "pl" ? (
+                <Flag country={"PL"} />
+              ) : (
+                <Flag country={"GB"} />
+              )
+            }
+            variant="light"
+            onSelect={(e) => handleLanguage(e)}
+          >
+            <Dropdown.Item eventKey={"pl"}>
+              <Flag country={"PL"} />
+              Polski
+            </Dropdown.Item>
+            <Dropdown.Item eventKey={"en"}>
+              <Flag country={"GB"} />
+              English
+            </Dropdown.Item>
+          </DropdownButton>
         </Nav>
       </Container>
     </NavbarBs>

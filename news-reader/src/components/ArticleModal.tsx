@@ -5,8 +5,10 @@ import {
   selectArticleModal,
   setArticleModal,
 } from "../features/layout/layoutSlice"
+import { useTranslation } from "react-i18next"
 
 const ArticleModal = () => {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const { show, title, content, author, url } =
     useAppSelector(selectArticleModal)
@@ -22,11 +24,14 @@ const ArticleModal = () => {
       <Modal.Footer>
         <div className="w-100 d-flex flex-row  text-body-secondary justify-content-between">
           <div>
-            <small> Autor: {author} </small>
+            <small>
+              {" "}
+              {t("Author")}: {author}{" "}
+            </small>
           </div>
           <div>
             <a href={url} target="_blank" rel="noopener noreferrer">
-              <small>Zobacz artykuł</small>
+              <small>{t("Read article")}</small>
             </a>
           </div>
         </div>

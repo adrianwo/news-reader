@@ -3,12 +3,14 @@ import { Table } from "react-bootstrap"
 import { formatDate } from "../utils/formatDate"
 import { useAppDispatch } from "../app/hooks"
 import { setArticleModal } from "../features/layout/layoutSlice"
+import { useTranslation } from "react-i18next"
 
 type Props = {
   articles: Article[]
 }
 
 const TableView = (props: Props) => {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const clickHandle = (index: number) => {
     dispatch(
@@ -27,9 +29,9 @@ const TableView = (props: Props) => {
       <Table striped hover>
         <thead>
           <tr>
-            <th>Tytuł</th>
-            <th>Nazwa źródła</th>
-            <th>Data publikacji</th>
+            <th>{t("title")}</th>
+            <th>{t("source")}</th>
+            <th>{t("published at")}</th>
           </tr>
         </thead>
         <tbody>
