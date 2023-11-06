@@ -1,12 +1,26 @@
 import { Row, Col } from "react-bootstrap"
 import { Article } from "../types/types"
 import { ArticleCard } from "./ArticleCard"
+import { useAppDispatch } from "../app/hooks"
+import { setArticleModal } from "../features/layout/layoutSlice"
+
 type Props = {
   articles: Article[]
 }
 
 const CardView = (props: Props) => {
-  const clickHandle = (index: number) => {}
+  const dispatch = useAppDispatch()
+  const clickHandle = (index: number) => {
+    dispatch(
+      setArticleModal({
+        show: true,
+        title: props.articles[index].title,
+        author: props.articles[index].author,
+        content: props.articles[index].content,
+        url: props.articles[index].url,
+      }),
+    )
+  }
 
   return (
     <Row md={2} xs={1} lg={3} className="g-3">

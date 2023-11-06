@@ -8,8 +8,15 @@ export const news = createApi({
     baseUrl: "https://newsapi.org/v2/",
   }),
   endpoints: (builder) => ({
-    getNews: builder.query<ListResponse<Article>, number>({
-      query: (page: number) => `everything?q=*&apiKey=${apiKey}&page=${page}`,
+    getNews: builder.query<
+      ListResponse<Article>,
+      { page: number; country?: string }
+    >({
+      query: ({ page, country }) => {
+        if (country)
+          return `top-headlines?&apiKey=${apiKey}&page=${page}&pagesize=100&country=${country}`
+        return `everything?q=*&apiKey=${apiKey}&page=${page}`
+      },
     }),
   }),
 })

@@ -18,13 +18,15 @@ export function ArticleCard({
 }: ArticleCardProps) {
   return (
     <Card className="h-100 shadow-sm">
-      <Card.Img
-        variant="top"
-        src={urlToImage}
-        alt="No image"
-        height="200px"
-        style={{ objectFit: "cover" }}
-      />
+      {urlToImage && (
+        <Card.Img
+          variant="top"
+          src={urlToImage}
+          alt="No image"
+          height="200px"
+          style={{ objectFit: "cover" }}
+        />
+      )}
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline ">
           <span className="fs-4">{title}</span>
@@ -40,9 +42,13 @@ export function ArticleCard({
             </div>
           </div>
           <div className="d-flex flex-row  text-body-secondary justify-content-between">
-            <small>Źródło: {sourceName} </small>
             <small>
-              Opublikowano: {new Date(publishedAt).toLocaleString()}
+              Źródło:
+              <br /> {sourceName}{" "}
+            </small>
+            <small>
+              Opublikowano:
+              <br /> {new Date(publishedAt).toLocaleString()}
             </small>
           </div>
         </div>

@@ -15,7 +15,21 @@ export interface ListResponse<T> {
   articles: T[]
 }
 
+export interface IArticleModal {
+  show: boolean
+  title?: string
+  author?: string
+  content?: string
+  url?: string
+}
+
 export interface LayoutState {
   listView: boolean
   totalResults: number
+  articleModal: IArticleModal
+}
+
+export type Country = {
+  name: string
+  code: string
 }

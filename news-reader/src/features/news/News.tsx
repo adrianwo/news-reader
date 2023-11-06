@@ -7,11 +7,17 @@ import {
 } from "../../features/layout/layoutSlice"
 import TableView from "../../components/TableView"
 import CardView from "../../components/CardView"
+import { useParams } from "react-router-dom"
+import ArticleModal from "../../components/ArticleModal"
 
 const News = () => {
   const dispatch = useAppDispatch()
   const [currentPage] = useState<number>(1)
-  const { data, isLoading, error } = useGetNewsQuery(currentPage)
+  const { code } = useParams()
+  const { data, isLoading, error } = useGetNewsQuery({
+    page: currentPage,
+    country: code,
+  })
   const isListView = useAppSelector(selectListView)
 
   useEffect(() => {
@@ -42,12 +48,13 @@ const News = () => {
   }
   if (data) {
     return (
-      <div className="main py-3">
+      <div className="main container flex-shrink-1 py-3 ">
         {isListView ? (
           <TableView articles={data.articles} />
         ) : (
           <CardView articles={data.articles} />
         )}
+        <ArticleModal />
       </div>
     )
   }

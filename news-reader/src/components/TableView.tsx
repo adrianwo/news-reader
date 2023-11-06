@@ -1,12 +1,26 @@
 import { Article } from "../types/types"
 import { Table } from "react-bootstrap"
 import { formatDate } from "../utils/formatDate"
+import { useAppDispatch } from "../app/hooks"
+import { setArticleModal } from "../features/layout/layoutSlice"
+
 type Props = {
   articles: Article[]
 }
 
 const TableView = (props: Props) => {
-  const clickHandle = (index: number) => {}
+  const dispatch = useAppDispatch()
+  const clickHandle = (index: number) => {
+    dispatch(
+      setArticleModal({
+        show: true,
+        title: props.articles[index].title,
+        author: props.articles[index].author,
+        content: props.articles[index].content,
+        url: props.articles[index].url,
+      }),
+    )
+  }
 
   return (
     <div className="table-responsive card">

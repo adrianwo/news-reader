@@ -3,14 +3,20 @@ import "./App.css"
 import News from "./features/news/News"
 import { Navbar } from "./features/layout/Navbar"
 import Footer from "./features/layout/Footer"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
+import SideBar from "./features/layout/SideBar"
 function App() {
   return (
-    <Container className="d-flex flex-column h-100">
+    <Container className="p-0">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<News />} />
-      </Routes>
+      <div className="d-flex">
+        <SideBar />
+        <Routes>
+          <Route path="/" element={<News />} />
+          <Route path="/country/:code" element={<News />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
       <Footer />
     </Container>
   )
