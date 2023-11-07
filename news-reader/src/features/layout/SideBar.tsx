@@ -8,10 +8,15 @@ const SideBar = () => {
   const { t } = useTranslation()
   const countries = CountryList.map((country) => {
     return (
-      <Nav.Link key={country.code} to={`/country/${country.code}`} as={NavLink}>
-        <div className="d-inline-flex ">
-          <Flag country={country.code.toUpperCase()} />
-          <span className="d-none d-lg-inline ps-2">
+      <Nav.Link
+        key={country.code}
+        to={`/country/${country.code}`}
+        as={NavLink}
+        className="rounded rounded-5"
+      >
+        <div className="d-inline-flex align-items-center">
+          <Flag country={country.code.toUpperCase()} className="m-2" />
+          <span className="d-none d-lg-inline pe-2">
             {t(country.name)}
             {/* {country.name.replace(/ /g, "\u00a0")} */}
           </span>

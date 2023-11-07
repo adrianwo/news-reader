@@ -8,13 +8,12 @@ body {
 }
 
 .aside {
-  min-width: 40px;
+  min-width: 56px;
   position: sticky;
   top: 4.5rem;
-  /* inset-block-start: 0px; */
   height: calc(100vh - 146px);
   margin-right: 10px;
-  flex: 0 1 auto; /* 1 */
+  flex: 0 1 auto; 
   overflow-y: auto;
 }
 
