@@ -21,6 +21,8 @@
 
 ## Screenshots
 
+![2023-11-07_12-57-42](https://github.com/adrianwo/news-reader/assets/5526483/cd010902-56ca-4e60-be33-c5bc9dfa5c86)
+
 ## How to run this project?
 
 ### Development
